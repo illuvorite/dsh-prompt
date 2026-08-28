@@ -1,0 +1,7 @@
+# Standalone DSH Web bundle for model-driven prompt enhancement.
+# Install this bundle into a Web profile; it contributes both the Host command
+# and the browser input control. It uses only DSH's built-in commands Remote,
+# model selection, LLM service, and conversation input Slot.
+- insert:
+    - id: dsh-prompt-enhancer
+      name: dsh-prompt-enhancer
