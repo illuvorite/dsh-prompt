@@ -1,5 +1,5 @@
 {
-  "name": "dsh-prompt-enhancer",
+  "name": "dsh-prompt",
   "version": "1.0.0",
   "description": "Standalone model-driven prompt enhancer for DeepSeek Harness Web",
   "type": "module",

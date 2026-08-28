@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const name = 'dsh-prompt-enhancer-client'
 export const inject = ['remote.commands', 'slots']
@@ -7,9 +7,25 @@ function Panel({ session, input, inputActions, enhance }) {
   const [open, setOpen] = useState(false)
   const [choice, setChoice] = useState('original')
   const [enhanced, setEnhanced] = useState(null)
+  const [enhancedFor, setEnhancedFor] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const original = input.draft
+
+  // `input.draft` is read on every render, so the "original" preview and
+  // apply-to-input action always reflect the live composer text rather
+  // than the value captured when the panel first opened.
+  // If the draft changed since the last enhancement, the cached
+  // `enhanced` text no longer matches the user's input — drop it so
+  // "apply" can't push stale output back into the composer, and force
+  // a fresh generation on the next click.
+  useEffect(() => {
+    if (enhanced !== null && enhancedFor !== original) {
+      setEnhanced(null)
+      setEnhancedFor('')
+      setChoice(prev => (prev === 'enhanced' ? 'original' : prev))
+    }
+  }, [original, enhanced, enhancedFor])
 
   const generate = async () => {
     if (loading || !original.trim()) return
@@ -23,6 +39,7 @@ function Panel({ session, input, inputActions, enhance }) {
         throw new Error(execution?.result?.text || '模型没有返回增强后的提示词。')
       }
       setEnhanced(execution.result.text)
+      setEnhancedFor(original)
       setChoice('enhanced')
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : String(reason))
