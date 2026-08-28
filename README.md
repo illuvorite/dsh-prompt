@@ -32,7 +32,13 @@ pnpm dsh plugin --profile web add github:illuvorite/dsh-prompt
 Restart the Web profile after installation:
 
 ```sh
-dsh --profile web web
+dsh web --profile web
+```
+
+If your installed CLI uses the profile launcher form instead, use:
+
+```sh
+dsh --profile web
 ```
 
 Then refresh `http://127.0.0.1:3080`. The control appears in the right side of the composer.
