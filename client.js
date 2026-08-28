@@ -74,7 +74,7 @@ window.__ModuleLoader__.load({ id: "dsh-prompt", factory: (require) => {
   }
 
   exports.name = 'dsh-prompt-client';
-  exports.inject = ['remote.commands', 'slots'];
+  exports.inject = ['remote', 'remote.commands', 'slots'];
 
   exports.apply = function(ctx) {
     ctx.slots.inject('conversation.input.right', function() {
