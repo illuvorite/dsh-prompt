@@ -3,5 +3,5 @@
 # and the browser input control. It uses only DSH's built-in commands Remote,
 # model selection, LLM service, and conversation input Slot.
 - insert:
-    - id: dsh-prompt-enhancer
-      name: dsh-prompt-enhancer
+    - id: dsh-prompt
+      name: dsh-prompt

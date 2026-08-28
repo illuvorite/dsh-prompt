@@ -1,6 +1,6 @@
 import { createUserMessage } from '@deepseek-ai/dsh-llm'
 
-export const name = 'dsh-prompt-enhancer'
+export const name = 'dsh-prompt'
 export const inject = ['commands', 'agentDefaultModel', 'llm']
 
 const SYSTEM_PROMPT = `You are a professional prompt engineer. Rewrite the user's prompt into a refined, detailed, and highly effective version that keeps the original intent. Clarify the goal, context, requirements, constraints, and expected output format. Write in the same language as the original prompt. Output ONLY the enhanced prompt, with no preamble, commentary, explanation, or surrounding quotes.`
@@ -21,7 +21,7 @@ async function enhance(invocation, ctx) {
       system: SYSTEM_PROMPT,
       messages: [createUserMessage({
         content: [{ type: 'text', text }],
-        source: { kind: 'plugin', plugin: 'dsh-prompt-enhancer' },
+        source: { kind: 'plugin', plugin: 'dsh-prompt' },
       })],
       temperature: 0.7,
       maxTokens: MAX_TOKENS,
