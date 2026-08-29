@@ -6,6 +6,8 @@ It adds a `✨ 增强提示词` control beside the conversation composer. The or
 
 This repository is a DSH **bundle**, not a browser extension. It does not modify the Harness source tree or require the custom prompt-enhancer package from the main checkout. It uses only built-in DSH capabilities: the commands Remote, current model selection, LLM service, and conversation input Slot.
 
+> **Repository name vs package name**: the GitHub repository is `illuvorite/dsh-prompt` and `package.json#name` is `dsh-prompt`. They must match for `dsh plugin add` to succeed. If you clone into a different directory name, rename the local directory to `dsh-prompt` before running `dsh plugin add ./dsh-prompt`.
+
 ## Requirements
 
 - DeepSeek Harness with the Web profile and the built-in `commands` Remote.
